@@ -1,14 +1,28 @@
 {
-  "publisher": "mefengl",
-  "name": "copy-folder-content",
-  "displayName": "Copy Folder Content",
-  "version": "1.6.8",
-  "private": true,
-  "description": "Copies the content of a selected folder or a collection of files into the clipboard with customization options.",
-  "author": "mefengl",
-  "repository": "https://github.com/mefengl/vscode-copy-folder-content",
-  "categories": [
-    "Other"
+  "publisher": "SewaraDev",
+  "name": "copy-fences-lang",
+  "displayName": "Copy Fences (+Language)",
+  "version": "0.1.0",
+  "description": "Copies files/folders to the clipboard as Markdown code fences with triple backticks and a language label inferred from file extension (e.g., .dart -> ```dart).",
+  "author": "SewaraDev",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SewaraDev/vscode-copy-fences-lang"
+  },
+  "homepage": "https://github.com/SewaraDev/vscode-copy-fences-lang",
+  "bugs": {
+    "url": "https://github.com/SewaraDev/vscode-copy-fences-lang/issues"
+  },
+  "categories": ["Other"],
+  "keywords": [
+    "copy",
+    "clipboard",
+    "markdown",
+    "code fences",
+    "language",
+    "folder",
+    "files"
   ],
   "main": "./dist/extension.js",
   "icon": "res/logo.png",
@@ -20,19 +34,19 @@
     "commands": [
       {
         "command": "extension.copyFolderContent",
-        "title": "Copy Folder Content"
+        "title": "Copy Folder Content (Markdown Fences + Lang)"
       },
       {
         "command": "extension.copyFolderContentWithoutComments",
-        "title": "Copy Folder Content Without Comments"
+        "title": "Copy Folder Content Without Comments (Fences + Lang)"
       },
       {
         "command": "extension.copyFolderContentRecursively",
-        "title": "Recursively Copy Folder Content"
+        "title": "Recursively Copy Folder Content (Fences + Lang)"
       },
       {
         "command": "extension.copyFolderContentRecursivelyByType",
-        "title": "Recursively Copy Folder Content By Type"
+        "title": "Recursively Copy Folder Content by Type (Fences + Lang)"
       },
       {
         "command": "extension.newCollectionAndAdd",
@@ -44,19 +58,19 @@
       },
       {
         "command": "extension.addToCollectionAndCopy",
-        "title": "Add File to Collection and Copy"
+        "title": "Add File to Collection and Copy (Fences + Lang)"
       },
       {
         "command": "extension.copyCollectionAndClear",
-        "title": "Copy Collection and Clear"
+        "title": "Copy Collection and Clear (Fences + Lang)"
       },
       {
         "command": "extension.copySelectedFilesAndFolders",
-        "title": "Copy Selected Files and Folders"
+        "title": "Copy Selected Files and Folders (Fences + Lang)"
       },
       {
         "command": "extension.copyLastSelection",
-        "title": "Copy Last Selection"
+        "title": "Copy Last Selection (Fences + Lang)"
       }
     ],
     "menus": {
