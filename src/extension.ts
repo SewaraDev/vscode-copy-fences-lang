@@ -3,9 +3,69 @@ import * as iconv from 'iconv-lite'
 import * as jschardet from 'jschardet'
 import stripComments from 'strip-comments'
 import * as vscode from 'vscode'
+import * as path from 'node:path';
+
 
 let filesCollection: vscode.Uri[] = []
 let lastSelItem: vscode.StatusBarItem | undefined
+
+function extToMarkdownLang(extWithDot: string): string {
+  if (!extWithDot) return '';
+  const ext = extWithDot.replace(/^\./, '').toLowerCase();
+
+  const map: Record<string, string> = {
+    js: 'javascript',
+    mjs: 'javascript',
+    cjs: 'javascript',
+    ts: 'typescript',
+    jsx: 'jsx',
+    tsx: 'tsx',
+    json: 'json',
+    yml: 'yaml',
+    yaml: 'yaml',
+    md: 'markdown',
+    sh: 'bash',
+    bash: 'bash',
+    zsh: 'bash',
+    ps1: 'powershell',
+    py: 'python',
+    rb: 'ruby',
+    go: 'go',
+    rs: 'rust',
+    java: 'java',
+    kt: 'kotlin',
+    swift: 'swift',
+    c: 'c',
+    h: 'c',
+    cpp: 'cpp',
+    cxx: 'cpp',
+    cc: 'cpp',
+    hpp: 'cpp',
+    cs: 'csharp',
+    php: 'php',
+    html: 'html',
+    css: 'css',
+    scss: 'scss',
+    sass: 'sass',
+    xml: 'xml',
+    sql: 'sql',
+    toml: 'toml',
+    ini: 'ini',
+    env: 'dotenv',
+    dockerfile: 'dockerfile',
+    dart: 'dart',      // ⬅️ lo que pediste: ```dart
+    vue: 'vue',
+    svelte: 'svelte',
+    astro: 'astro',
+    prisma: 'prisma',
+    gql: 'graphql',
+    graphql: 'graphql',
+    proto: 'protobuf',
+  };
+
+  return map[ext] ?? ext; 
+}
+
 
 async function copyContent(files: vscode.Uri[], withoutComments: boolean = false): Promise<string> {
   let content = ''
@@ -24,9 +84,12 @@ async function copyContent(files: vscode.Uri[], withoutComments: boolean = false
         fileContent = stripComments(fileContent)
           .replace(/\n\s*\n/g, '\n\n')
       }
-      content += `------ ${vscode.workspace.asRelativePath(file)} ------\n\`\`\`\`\`\`\n`
-
-      content += `${fileContent}\n\`\`\`\`\`\`\n`
+       
+      const relPath = vscode.workspace.asRelativePath(file)
+      const lang = extToMarkdownLang(path.extname(file.fsPath)) 
+      
+      content += `------ ${relPath} ------\n\`\`\`${lang ? lang : ''}\n`
+      content += `${fileContent}\n\`\`\`\n`
     }
   }
   return content
