@@ -2,7 +2,7 @@
   "publisher": "Sewara",
   "name": "copy-fences-lang",
   "displayName": "Copy Fences (+Language)",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Copies files/folders to the clipboard as Markdown code fences with triple backticks and a language label inferred from file extension (e.g., .dart -> ```dart).",
   "author": "SewaraDev",
   "license": "MIT",
@@ -31,6 +31,16 @@
   },
   "activationEvents": [],
   "contributes": {
+     "configuration": {
+      "title": "Copy Fences (+Language)",
+      "properties": {
+        "copy-fences-lang.showLibPrefix": {
+          "type": "boolean",
+          "default": false,
+          "description": "If true, keep the 'lib/' prefix in file headers (useful for Dart/Flutter). If false, hide it when present."
+        }
+      }
+    },
     "commands": [
       {
         "command": "extension.copyFolderContent",
@@ -121,7 +131,7 @@
           "group": "copy-folder-content"
         }
       ]
-    }
+    }    
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
