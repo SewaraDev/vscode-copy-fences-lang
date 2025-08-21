@@ -68,7 +68,7 @@ function extToMarkdownLang(extWithDot: string): string {
 
 function displayPathForHeader(file: vscode.Uri): string {
   const cfg = vscode.workspace.getConfiguration('copy-fences-lang');
-  const showLib = cfg.get<boolean>('showLibPrefix', true);
+  const showLib = cfg.get<boolean>('showLibPrefix', false);
 
   let rel = vscode.workspace.asRelativePath(file).replace(/\\/g, '/');
 
