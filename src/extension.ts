@@ -66,6 +66,21 @@ function extToMarkdownLang(extWithDot: string): string {
   return map[ext] ?? ext; 
 }
 
+function displayPathForHeader(file: vscode.Uri): string {
+  const cfg = vscode.workspace.getConfiguration('copy-fences-lang');
+  const showLib = cfg.get<boolean>('showLibPrefix', true);
+
+  let rel = vscode.workspace.asRelativePath(file).replace(/\\/g, '/');
+
+  if (!showLib) {
+    if (rel.startsWith('lib/')) {
+      rel = rel.slice('lib/'.length);
+    }
+  }
+
+  return rel;
+}
+Ahora, en
 
 async function copyContent(files: vscode.Uri[], withoutComments: boolean = false): Promise<string> {
   let content = ''
@@ -85,10 +100,10 @@ async function copyContent(files: vscode.Uri[], withoutComments: boolean = false
           .replace(/\n\s*\n/g, '\n\n')
       }
        
-      const relPath = vscode.workspace.asRelativePath(file)
+      const relPath = displayPathForHeader(file);
       const lang = extToMarkdownLang(path.extname(file.fsPath)) 
       
-      content += `------ ${relPath} ------\n\`\`\`${lang ? lang : ''}\n`
+      content += `**${relPath}**\n\`\`\`${lang ? lang : ''}\n`
       content += `${fileContent}\n\`\`\`\n`
     }
   }
