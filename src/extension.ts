@@ -53,7 +53,7 @@ function extToMarkdownLang(extWithDot: string): string {
     ini: 'ini',
     env: 'dotenv',
     dockerfile: 'dockerfile',
-    dart: 'dart',      // ⬅️ lo que pediste: ```dart
+    dart: 'dart',      
     vue: 'vue',
     svelte: 'svelte',
     astro: 'astro',
