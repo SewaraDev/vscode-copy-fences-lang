@@ -80,7 +80,6 @@ function displayPathForHeader(file: vscode.Uri): string {
 
   return rel;
 }
-Ahora, en
 
 async function copyContent(files: vscode.Uri[], withoutComments: boolean = false): Promise<string> {
   let content = ''
