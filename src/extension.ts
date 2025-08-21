@@ -103,7 +103,7 @@ async function copyContent(files: vscode.Uri[], withoutComments: boolean = false
       const lang = extToMarkdownLang(path.extname(file.fsPath)) 
       
       content += `**${relPath}**\n\`\`\`${lang ? lang : ''}\n`
-      content += `${fileContent}\n\`\`\`\n`
+      content += `${fileContent}\n\`\`\`\n\n`
     }
   }
   return content
